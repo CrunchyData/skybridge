@@ -1,6 +1,6 @@
 [Unit]
 Description=skybridge
-After=network.target skydns.service
+After=skydns.service
 
 [Service]
 Type=simple

@@ -1,6 +1,6 @@
 [Unit]
 Description=skydns
-After=etcd.service
+After=docker.service
 
 [Service]
 Type=simple
