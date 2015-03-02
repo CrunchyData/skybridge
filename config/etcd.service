@@ -1,0 +1,22 @@
+[Unit]
+Description=etcd
+After=network.target docker.service
+
+[Service]
+Type=simple
+TimeoutSec=120
+User=root
+Group=root
+
+Environment="PATH=/opt/cpm/bin:/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/root/bin"
+SyslogIdentifier=etcd
+
+ExecStart=/opt/cpm/bin/etcd \
+-data-dir /opt/cpm/data/etcd 
+
+
+ExecStop=/bin/killall etcd
+
+[Install]
+WantedBy=multi-user.target
+
