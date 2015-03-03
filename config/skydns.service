@@ -1,6 +1,6 @@
 [Unit]
 Description=skydns
-After=docker.service
+After=network-online.target docker.service
 
 [Service]
 Type=simple
