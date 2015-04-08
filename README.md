@@ -43,7 +43,7 @@ Users will download the skybridge installation archive from
 the following location:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~
-wget http://s3.amazon.com/crunchydata/skybridge.1.0.0-linux-amd64.tar.gz
+wget https://s3.amazonaws.com/crunchydata/cpm/skybridge.1.0.0-linux-amd64.tar.gz
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
 They will un-tar the file and run the install.sh script located
