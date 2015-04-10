@@ -44,8 +44,7 @@ cp $SKYBRIDGE_DIR/config/skybridge.service \
 
 cd $TMPDIR
 
-tar cvzf /tmp/skybridge.1.0.0-linux-amd64.tar.gz .
+tar cvzf /tmp/skybridge.1.0.1-linux-amd64.tar.gz .
 	
-
 rm -rf $TMPDIR
 

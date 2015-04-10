@@ -52,8 +52,7 @@ sudo cp ./opt/cpm/config/etcd.service $SYSTEMD
 sudo cp ./opt/cpm/config/skydns.service $SYSTEMD
 sudo cp ./opt/cpm/config/skybridge.service $SYSTEMD
 
-sudo yum -y install docker-io
-sudo usermod -a -G docker $USER
+sudo yum -y install docker
 sudo cp ./opt/cpm/config/docker /etc/sysconfig/
 sudo systemctl enable docker.service
 sudo systemctl start docker.service
