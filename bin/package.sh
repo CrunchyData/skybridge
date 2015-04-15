@@ -16,22 +16,22 @@
 # 
 # package up etcd, skydns, and skybridge for a user install archive
 
-
+VERSION=1.0.2
 ETCD_DIR=$HOME/etcd-v2.0.0-linux-amd64
 SKYDNS_DIR=$HOME/skydns
 SKYBRIDGE_DIR=$HOME/skybridge
 TMPDIR=/tmp/skybridge.package
 
-mkdir -p $TMPDIR/opt/cpm/bin
-mkdir -p $TMPDIR/opt/cpm/config
-mkdir -p $TMPDIR/opt/cpm/data/etcd
+mkdir -p $TMPDIR/var/cpm/bin
+mkdir -p $TMPDIR/var/cpm/config
+mkdir -p $TMPDIR/var/cpm/data/etcd
 
 cp $ETCD_DIR/etcd \
 	$ETCD_DIR/etcdctl \
 	$SKYDNS_DIR/bin/skydns \
 	$SKYBRIDGE_DIR/bin/skybridge \
 	$SKYBRIDGE_DIR/bin/wait20 \
-      	$TMPDIR/opt/cpm/bin
+      	$TMPDIR/var/cpm/bin
 
 cp $SKYBRIDGE_DIR/bin/install.sh \
 	$TMPDIR 
@@ -40,11 +40,11 @@ cp $SKYBRIDGE_DIR/config/skybridge.service \
 	$SKYBRIDGE_DIR/config/etcd.service \
 	$SKYBRIDGE_DIR/config/docker \
 	$SKYBRIDGE_DIR/config/skydns.service \
-      	$TMPDIR/opt/cpm/config
+      	$TMPDIR/var/cpm/config
 
 cd $TMPDIR
 
-tar cvzf /tmp/skybridge.1.0.1-linux-amd64.tar.gz .
+tar cvzf /tmp/skybridge.$VERSION-linux-amd64.tar.gz .
 	
 rm -rf $TMPDIR
 
