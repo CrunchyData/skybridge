@@ -28,7 +28,6 @@ import (
 	"flag"
 	"fmt"
 	dockerapi "github.com/fsouza/go-dockerclient"
-	"github.com/golang/glog"
 	"strconv"
 	"time"
 )
@@ -54,10 +53,10 @@ func init() {
 func main() {
 
 	var dockerConnected = false
-	glog.Infoln("DOCKER_HOST=" + DOCKER_HOST)
-	glog.Infoln("ETCD=" + ETCD)
-	glog.Infoln("TTL=" + strconv.FormatUint(TTL, 10))
-	glog.Infoln("DOMAIN=" + DOMAIN)
+	fmt.Println("DOCKER_HOST=" + DOCKER_HOST)
+	fmt.Println("ETCD=" + ETCD)
+	fmt.Println("TTL=" + strconv.FormatUint(TTL, 10))
+	fmt.Println("DOMAIN=" + DOMAIN)
 	var tries = 0
 	var docker *dockerapi.Client
 	var err error
@@ -65,41 +64,40 @@ func main() {
 		docker, err = dockerapi.NewClient(DOCKER_HOST)
 		err = docker.Ping()
 		if err != nil {
-			glog.Errorln("could not ping docker host")
-			glog.Errorln("sleeping and will retry in %d sec\n", delaySeconds)
+			fmt.Println("could not ping docker host")
+			fmt.Println("sleeping and will retry in %d sec\n", delaySeconds)
 			time.Sleep(delay)
 		} else {
-			glog.Errorln("no err in connecting to docker")
+			fmt.Println("no err in connecting to docker")
 			dockerConnected = true
 			break
 		}
 	}
 
 	if dockerConnected == false {
-		glog.Errorln("failing, could not connect to docker after retries")
-		glog.Flush()
+		fmt.Println("failing, could not connect to docker after retries")
 		panic("cant connect to docker")
 	}
 
 	events := make(chan *dockerapi.APIEvents)
 	assert(docker.AddEventListener(events))
-	glog.Infoln("skybridge: Listening for Docker events...")
+	fmt.Println("skybridge: Listening for Docker events...")
 	for msg := range events {
 		switch msg.Status {
 		//case "start", "create":
 		case "start":
-			glog.Infoln("event: " + msg.Status + " ID=" + msg.ID + " From:" + msg.From)
+			fmt.Println("event: " + msg.Status + " ID=" + msg.ID + " From:" + msg.From)
 			Action(msg.Status, msg.ID, docker)
 		case "stop":
-			glog.Infoln("event: " + msg.Status + " ID=" + msg.ID + " From:" + msg.From)
+			fmt.Println("event: " + msg.Status + " ID=" + msg.ID + " From:" + msg.From)
 			Action(msg.Status, msg.ID, docker)
 		case "destroy":
-			glog.Infoln("event: " + msg.Status + " ID=" + msg.ID + " From:" + msg.From)
+			fmt.Println("event: " + msg.Status + " ID=" + msg.ID + " From:" + msg.From)
 			Action(msg.Status, msg.ID, docker)
 		case "die":
-			glog.Infoln("event: " + msg.Status + " ID=" + msg.ID + " From:" + msg.From)
+			fmt.Println("event: " + msg.Status + " ID=" + msg.ID + " From:" + msg.From)
 		default:
-			glog.Infoln("event: " + msg.Status)
+			fmt.Println("event: " + msg.Status)
 		}
 	}
 
@@ -121,19 +119,19 @@ func Action(action string, containerId string, docker *dockerapi.Client) {
 	var ipaddress = container.NetworkSettings.IPAddress
 
 	if ipaddress == "" {
-		glog.Infoln("no ipaddress returned for container: " + hostname)
+		fmt.Println("no ipaddress returned for container: " + hostname)
 		return
 	}
 
 	switch action {
 	case "start":
-		glog.Infoln("new container name=" + container.Name[1:] + " ip:" + ipaddress)
+		fmt.Println("new container name=" + container.Name[1:] + " ip:" + ipaddress)
 		addEntry(hostname, ipaddress)
 	case "stop":
-		glog.Infoln("removing container name=" + container.Name[1:] + " ip:" + ipaddress)
+		fmt.Println("removing container name=" + container.Name[1:] + " ip:" + ipaddress)
 		deleteEntry(hostname, ipaddress)
 	case "destroy":
-		glog.Infoln("removing container name=" + container.Name[1:] + " ip:" + ipaddress)
+		fmt.Println("removing container name=" + container.Name[1:] + " ip:" + ipaddress)
 		deleteEntry(hostname, ipaddress)
 	default:
 	}
@@ -143,7 +141,6 @@ func Action(action string, containerId string, docker *dockerapi.Client) {
 func assert(err error) {
 	if err != nil {
 		fmt.Println("skybridge: ", err)
-		glog.Flush()
 		panic("can't continue")
 	}
 }

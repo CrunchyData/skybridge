@@ -8,12 +8,12 @@ TimeoutSec=120
 User=root
 Group=root
 
-Environment="PATH=/opt/cpm/bin:/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/root/bin"
+Environment="PATH=/var/cpm/bin:/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/root/bin"
 SyslogIdentifier=skydns
 
-ExecStartPre=/opt/cpm/bin/wait20
+ExecStartPre=/var/cpm/bin/wait20
 
-ExecStart=/opt/cpm/bin/skydns \
+ExecStart=/var/cpm/bin/skydns \
 -addr=192.168.0.106:53 \
 -machines=127.0.0.1:4001 \
 -domain=crunchy.lab. \

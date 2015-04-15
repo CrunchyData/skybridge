@@ -64,8 +64,8 @@ systemd unit files are copied to the user's system (/usr/lib/systemd/system), en
 
 All installed files are copied to the following directory:
 ~~~~~~~~~~~~~~~~~~~~~~~~~
-/opt/cpm/bin
-/opt/cpm/config
+/var/cpm/bin
+/var/cpm/config
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
@@ -96,7 +96,7 @@ We specify a location for etcd to store it's data, for
 example:
 
 ~~~~~~~~~~~~~~~~~~
--data-dir /opt/cpm/data/etcd
+-data-dir /var/cpm/data/etcd
 ~~~~~~~~~~~~~~~~~~
 
 
