@@ -37,9 +37,32 @@ for a production installation, however if you just want to test
 skybridge, and your DHCP address doesn't change very often, you 
 can specify your DHCP assigned address.
 
-User Installation
+Docker Container Installation
+=============================
+The easy way to run skybridge is to run the Docker container version.
+
+A container has been built that includes etcd, skydns, and skybridge
+ready for use.
+
+The container is located in DockerHub at crunchydata/skybridge:latest
+
+To execute, run the run-skybridge.sh script found here:
+https://github.com/CrunchyData/skybridge/blob/master/bin/run-skybridge.sh
+
+Edit the script, adding your own IP address of your host, the domain
+name of your choice.
+
+Then run the script:
+
+sudo ./run-skybridge.sh
+
+This script will pull down the skybridge docker image, and execute
+it.
+
+Host Installation
 =====================
-Users will download the skybridge installation archive from
+Users can also run skybridge on their host, outside of a container, by
+downloading the skybridge installation archive from
 the following location:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~

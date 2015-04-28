@@ -21,19 +21,23 @@ if [[ $EUID -ne 0 ]]; then
 fi
 
 INSTALLDIR=`pwd`
+MYHOSTIP=192.168.0.106
+MYDOMAIN=crunchy.lab
+DATADIR=/var/cpm/data/etcd
+rm -rf $DATADIR/*
+#	-e DOCKER_HOST=http://192.168.0.106:5000 \
 
-chcon -Rt svirt_sandbox_file_t /var/cpm/data/etcd
+chcon -Rt svirt_sandbox_file_t $DATADIR
 echo "restarting skybridge container..."
 docker stop skybridge
 docker rm skybridge
 docker run --name=skybridge -d \
 	--hostname="skybridge" \
 	--privileged \
-	-p 192.168.0.106:53:53/udp \
+	-p $MYHOSTIP:53:53/udp \
 	-v /run/docker.sock:/tmp/docker.sock \
 	-v /var/cpm/data/etcd:/etcddata \
-	-e DOCKER_HOST=http://192.168.0.106:5000 \
-	-e DNS_DOMAIN=crunchy.lab \
+	-e DNS_DOMAIN=$MYDOMAIN \
 	-e DNS_NAMESERVER=192.168.0.1 \
 	crunchydata/skybridge:latest
 
