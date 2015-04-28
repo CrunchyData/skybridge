@@ -44,7 +44,7 @@ sleep 3
 # start skydns
 #
 
-skydns -addr=127.0.0.1:53 -machines=127.0.0.1:4001 -domain=$DNS_DOMAIN. -nameservers=$DNS_NAMESERVER:53 &
+skydns -addr=0.0.0.0:53 -machines=127.0.0.1:4001 -domain=$DNS_DOMAIN. -nameservers=$DNS_NAMESERVER:53 &
 
 sleep 3
 
