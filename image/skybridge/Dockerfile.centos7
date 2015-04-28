@@ -1,7 +1,7 @@
 FROM docker.io/centos:centos7
 MAINTAINER crunchy
 
-RUN yum install -y bind-utils procps-ng which hostname && yum clean all -y
+RUN yum install -y nc bind-utils procps-ng which hostname && yum clean all -y
 
 EXPOSE 53
 
