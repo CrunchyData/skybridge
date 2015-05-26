@@ -8,6 +8,17 @@ and adds/removes/updates DNS information on a skydns service
 either locally or remotely. RHEL7/Centos7 64 bit systems are
 currently supported.
 
+skybridge is distributed as a Docker image found on github
+at the following location:
+
+https://registry.hub.docker.com/u/crunchydata/skybridge
+
+There is a script to run the skybridge docker container
+found here:
+
+https://github.com/CrunchyData/skybridge/blob/master/bin/run-skybridge.sh
+
+
 environment prerequisites
 =========================
 
@@ -66,7 +77,7 @@ downloading the skybridge installation archive from
 the following location:
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~
-wget https://s3.amazonaws.com/crunchydata/cpm/skybridge.1.0.0-linux-amd64.tar.gz
+wget https://s3.amazonaws.com/crunchydata/cpm/skybridge.1.0.4-linux-amd64.tar.gz
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
 They will un-tar the file and run the install.sh script located

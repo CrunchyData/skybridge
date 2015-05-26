@@ -16,7 +16,7 @@
 # 
 # package up etcd, skydns, and skybridge for a user install archive
 
-VERSION=1.0.3
+VERSION=1.0.4
 ETCD_DIR=$HOME/etcd-v2.0.0-linux-amd64
 SKYDNS_DIR=$HOME/skydns
 SKYBRIDGE_DIR=$HOME/skybridge
