@@ -23,6 +23,7 @@
 # $DNS_NAMESERVER secondary DNS nameservers to add
 #
 
+export SWARM_MANAGER_URL=$SWARM_MANAGER_URL
 export DOCKER_HOST=$DOCKER_HOST
 export DNS_DOMAIN=$DNS_DOMAIN
 export DNS_NAMESERVER=$DNS_NAMESERVER
@@ -54,6 +55,7 @@ sleep 3
 
 ls -l /tmp/docker*
 
-skybridge -d $DNS_DOMAIN -h unix:///tmp/docker.sock -s http://127.0.0.1:4001 
+skybridge -d $DNS_DOMAIN -h $SWARM_MANAGER_URL -s http://127.0.0.1:4001 
+#skybridge -d $DNS_DOMAIN -h unix:///tmp/docker.sock -s http://127.0.0.1:4001 
 #skybridge -d $DNS_DOMAIN  -s http://127.0.0.1:4001 
 
