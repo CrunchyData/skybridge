@@ -219,11 +219,9 @@ specified:
 DOCKER
 ------
 this is the URL of the Docker server socket that will be listened to
-by skybridge, the default is unix:///var/run/docker.sock, if
-not specified:
+by skybridge, the value of the env variable SWARM_MANAGER_URL is used:
 ~~~~~~~~~~~~~~~
--h unix:///var/run/docker.sock
--h tcp://192.168.0.106:12012
+-h tcp://192.168.0.107:8000
 ~~~~~~~~~~~~~~~
 
 TTL
