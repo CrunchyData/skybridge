@@ -1,4 +1,9 @@
 
+this container is now deprecated, please see the crunchydata/skybridge2 project
+for the more recent version of this container.  Also, a similar DNS functionality
+is offered in the crunchydata/crunchy-containers project from the crunchy-dns
+container.
+
 
 skybridge
 ===========
